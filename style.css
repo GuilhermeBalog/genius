@@ -1,0 +1,129 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+html, body, #root{
+    height: 100%;
+}
+
+#root{
+    background-color: #262626;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#root h1{
+    color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+
+#root > button{
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px;
+    margin-bottom: 1em;
+    border: none;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+.centralizadora{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#buttons{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 3%;
+
+    width: 400px;
+    height: 400px;
+}
+
+#buttons button{
+    border: none;
+    cursor: pointer;
+}
+
+#buttons button:disabled{
+    cursor: not-allowed;
+}
+
+#buttons button:active{
+    background-color: white !important;
+}
+
+#green{
+    background-color: green;
+    border-top-left-radius: 100%;
+}
+#green:hover{
+    /* background-color: #09c409 !important; */
+}
+
+#red{
+    background-color: red;
+    border-top-right-radius: 100%;
+}
+#red:hover{
+    /* background-color: #ff5d5d !important; */
+}
+
+#yellow{
+    background-color: yellow;
+    border-bottom-left-radius: 100%;
+}
+#yellow:hover{
+    /* background-color: #fff350 !important; */
+}
+
+#blue{
+    background-color: blue;
+    border-bottom-right-radius: 100%;
+}
+#blue:hover{
+    /* background-color: #6b92ff !important; */
+}
+
+@media (max-width: 500px){
+    #buttons{
+        width: 300px;
+        height: 300px;
+    }
+}
+
+@media (max-width: 350px){
+    #buttons{
+        width: 200px;
+        height: 200px;
+    }
+}
+
+footer{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #FFFFFF;
+    font-weight: 400;
+    padding-bottom: 1em;
+}
+
+footer span{
+    color: red;
+}
+
+footer a{
+    text-decoration: none;
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
