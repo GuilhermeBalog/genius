@@ -8,8 +8,8 @@ const Genius = {
   contagemDeRodadas: 0,
   limiteDeRodadas: 6,
 
-  titulo: document.querySelector("#root > h1"),
-  botaoDePlay: document.querySelector("#root > button"),
+  titulo: document.querySelector("#controls > h1"),
+  botaoDePlay: document.querySelector("#controls > button"),
 
   comecarJogo() {
     this.contagemDeRodadas = 0;
@@ -25,7 +25,7 @@ const Genius = {
     this.contagemDeRodadas++;
     this.sequenciaDoJogador = [];
     this.gerarToque();
-    this.tocarSequencia();
+    setTimeout(() => { this.tocarSequencia() }, 1000)
   },
 
   jogar(indiceDaCor) {
@@ -75,10 +75,10 @@ const Genius = {
       const botaoDeCor = document.getElementById(cor);
 
       if (devoClarear) {
-        botaoDeCor.style.backgroundColor = "white";
+        botaoDeCor.classList.add('active')
         this.tocarNota(indiceDaSequencia);
       } else {
-        botaoDeCor.style.backgroundColor = cor;
+        botaoDeCor.classList.remove('active')
         iteradorDaSequencia++;
       }
 
@@ -92,14 +92,14 @@ const Genius = {
   },
 
   habilitarBotoes() {
-    const botoes = document.querySelectorAll("#buttons button");
+    const botoes = document.querySelectorAll("#buttons > button");
     botoes.forEach((botao) => {
       botao.removeAttribute("disabled");
     });
   },
 
   desabilitarBotoes() {
-    const botoes = document.querySelectorAll("#buttons button");
+    const botoes = document.querySelectorAll("#buttons > button");
     botoes.forEach((botao) => {
       botao.setAttribute("disabled", "disabled");
     });
@@ -121,10 +121,10 @@ const Genius = {
   },
 };
 
-document.querySelector("#titulo + button").onclick = () => {
+document.querySelector("#controls button").onclick = () => {
   Genius.comecarJogo();
 };
-document.querySelectorAll("#buttons button").forEach((botao, index) => {
+document.querySelectorAll("#buttons > button").forEach((botao, index) => {
   botao.onclick = () => {
     Genius.jogar(index);
   };
