@@ -2,7 +2,7 @@ const Genius = {
   nomeDasCores: ["green", "red", "yellow", "blue"],
   notas: [261.6, 293.7, 329.6, 392.0],
 
-  sequencia: [],
+  sequenciaGabarito: [],
   sequenciaDoJogador: [],
   gameOver: true,
   contagemDeRodadas: 0,
@@ -14,7 +14,7 @@ const Genius = {
   comecarJogo() {
     this.contagemDeRodadas = 0;
     this.gameOver = false;
-    this.sequencia = [];
+    this.sequenciaGabarito = [];
     this.botaoDePlay.innerHTML = "Recomeçar";
     this.escrever("Genius!");
     this.habilitarBotoes();
@@ -36,14 +36,14 @@ const Genius = {
     this.sequenciaDoJogador.push(indiceDaCor);
 
     this.sequenciaDoJogador.forEach((jogada, index) => {
-      if (jogada != this.sequencia[index]) {
+      if (jogada != this.sequenciaGabarito[index]) {
         this.finalizarJogo("Você Perdeu!");
       }
     });
 
     if (this.gameOver) return;
 
-    if (this.sequenciaDoJogador.length == this.sequencia.length) {
+    if (this.sequenciaDoJogador.length == this.sequenciaGabarito.length) {
       if (this.contagemDeRodadas >= this.limiteDeRodadas) {
         this.finalizarJogo("Você Ganhou!");
       } else {
@@ -54,7 +54,7 @@ const Genius = {
 
   gerarToque() {
     const randomInt = this.gerarNumeroAleatorio();
-    this.sequencia.push(randomInt);
+    this.sequenciaGabarito.push(randomInt);
   },
 
   gerarNumeroAleatorio() {
@@ -65,29 +65,29 @@ const Genius = {
     this.desabilitarBotoes();
 
     let iteradorDaSequencia = 0;
-    let devoClarear = true;
+    let deveClarear = true;
 
     const velocidade = 500;
 
     const intervalo = setInterval(() => {
-      const indiceDaSequencia = this.sequencia[iteradorDaSequencia];
-      const cor = this.nomeDasCores[indiceDaSequencia];
+      const indiceDaCor = this.sequenciaGabarito[iteradorDaSequencia];
+      const cor = this.nomeDasCores[indiceDaCor];
       const botaoDeCor = document.getElementById(cor);
 
-      if (devoClarear) {
+      if (deveClarear) {
         botaoDeCor.classList.add('active')
-        this.tocarNota(indiceDaSequencia);
+        this.tocarNota(indiceDaCor);
       } else {
         botaoDeCor.classList.remove('active')
         iteradorDaSequencia++;
       }
 
-      if (iteradorDaSequencia >= this.sequencia.length) {
+      if (iteradorDaSequencia >= this.sequenciaGabarito.length) {
         clearInterval(intervalo);
         this.habilitarBotoes();
       }
 
-      devoClarear = !devoClarear;
+      deveClarear = !deveClarear;
     }, velocidade);
   },
 
